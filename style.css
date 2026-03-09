@@ -1,0 +1,38 @@
+body {
+    background-color: #e3f2fd;
+}
+
+/* Carousel */
+.carousel {
+    max-width: 100%;
+    max-height: 500px;
+    overflow: hidden;
+}
+
+.carousel-inner img {
+    height: 500px;
+    object-fit: cover;
+}
+
+#home button {
+    background-color: #222;
+    border: none;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 10px;
+    transition: 0.3s ease;
+}
+
+#home button:hover {
+    background-color: #444;
+    transform: scale(1.05);
+}
+
+footer {
+    width: 100%;
+    margin-top: 10px;
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
