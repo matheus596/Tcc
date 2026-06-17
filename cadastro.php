@@ -6,12 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="/favicon/android-chrome-512x512.png">
+    <link rel="icon" type="image/png" href="favicon/android-chrome-512x512.png">
     <title>Cadastro</title>
 </head>
 <body>
 
     <?php include 'navbar.php'; ?>
+
+    <?php if (isset($_SESSION['erro'])): ?>
+        <div class="alert alert-danger">
+            <?= $_SESSION['erro']; ?>
+        </div>
+        <?php unset($_SESSION['erro']); ?>
+    <?php endif; ?>
 
     <div class="container mt-4">
         <form action="cadastro-script.php" method="post" class="mx-auto" style="max-width:420px;">
@@ -39,7 +46,5 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
 </body>
 </html>

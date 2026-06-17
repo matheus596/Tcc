@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $titulo = trim($_POST['titulo'] ?? '');
     $descricao = trim($_POST['descricao'] ?? '');
     $data = trim($_POST['data'] ?? '');
-    $anonimo = isset($_POST['anonimo']) ? 1 : 0;
+    $permitir_contato = isset($_POST['permitir_contato']) ? 1 : 0;
 
     // Validação
     if (empty($escola)) {
@@ -40,6 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erro = 'Por favor, descreva o ocorrido!';
     } elseif (strlen($descricao) < 20) {
         $erro = 'A descrição deve ter pelo menos 20 caracteres!';
+    } elseif (!empty($data) && (!strtotime($data) || strtotime($data) > time())) {
+        $erro = 'Data inválida ou futura!';
     } else {
 
         $nome_arquivo = null;
@@ -80,13 +82,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $erro = 'Erro na conexão com o banco';
                 } else {
 
-                    $usuario_id = $anonimo ? NULL : $_SESSION['usuario_id'];
+                    $usuario_id = $_SESSION['usuario_id'];
                     $data_ocorrido = !empty($data) ? $data : NULL;
 
                     $sql = "INSERT INTO denuncias 
                     (usuario_id, titulo, descricao, escola, local, tipo_bullying, vitima, autor,
-                     data_ocorrido, anexo, anonimo, data_criacao, status)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), 'pendente')";
+                     data_ocorrido, anexo, permitir_contato, data_criacao, status)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), 'triagem')";
 
                     $stmt = $conn->prepare($sql);
 
@@ -104,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             $autor,
                             $data_ocorrido,
                             $nome_arquivo,
-                            $anonimo
+                            $permitir_contato
                         );
 
                         if ($stmt->execute()) {

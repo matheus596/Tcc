@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $erro = 'Erro na conexão com o banco de dados';
         } else {
             // Preparar consulta para evitar SQL injection
-            $stmt = $conn->prepare("SELECT id, username, senha, level FROM usuarios WHERE email = ?");
+            $stmt = $conn->prepare("SELECT id, username, senha, level, escola FROM usuarios WHERE email = ?");
             
             if ($stmt) {
                 $stmt->bind_param("s", $email);
@@ -47,8 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $_SESSION['usuario_id'] = $usuario['id'];
                         $_SESSION['usuario_email'] = $email;
                         $_SESSION['usuario_name'] = $usuario['username'];
+                        $_SESSION['usuario_escola'] = $usuario['escola'] ?? '';
                         $_SESSION['loggedin'] = true;
-                        $_SESSION['level'] = $usuario['level']; // Salvar level do usuário na sessão
+                        $_SESSION['level'] = (int) $usuario['level']; // Salvar level do usuário na sessão
 
                         // Se marcou "Lembrar-me", criar cookie por 30 dias
                         if ($lembrar) {
@@ -59,10 +60,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         header('Location: index.php');
                         exit();
                     } else {
-                        $erro = 'E-mail ou senha incorretos!';
+                        $_SESSION['erro'] = 'E-mail ou senha incorretos!';
+						header('Location: login.php');
+						exit();
                     }
                 } else {
-                    $erro = 'E-mail ou senha incorretos!';
+                    $_SESSION['erro'] = 'E-mail ou senha incorretos!';
+					header('Location: login.php');
+					exit();
                 }
 
                 $stmt->close();

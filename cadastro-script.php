@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'config.php';
 
 // apenas aceitar POST
@@ -20,19 +21,27 @@ $confirma = $_POST['confirmPassword'];
 
 // 3. Validações
 if (empty($email) || empty($senha)) {
-    die("Preencha todos os campos!");
+    $_SESSION['erro'] = 'Preencha todos os campos!';
+    header('Location: cadastro.php');
+    exit();
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    die("E-mail inválido!");
+    $_SESSION['erro'] = 'E-mail inválido!';
+    header('Location: cadastro.php');
+    exit();
 }
 
 if (strlen($senha) < 6) {
-    die("A senha precisa ter pelo menos 6 caracteres!");
+    $_SESSION['erro'] = 'A senha precisa ter pelo menos 6 caracteres!';
+    header('Location: cadastro.php');
+    exit();
 }
 
 if ($senha !== $confirma) {
-    die("As senhas não coincidem!");
+    $_SESSION['erro'] = 'As senhas não coincidem!';
+    header('Location: cadastro.php');
+    exit();
 }
 
 // 4. Verifica se o e-mail já existe
@@ -42,7 +51,9 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result && $result->num_rows > 0) {
-    die("Este e-mail já está cadastrado!");
+    $_SESSION['erro'] = 'Este e-mail já está cadastrado!';
+    header('Location: cadastro.php');
+    exit();
 }
 $stmt->close();
 
@@ -82,7 +93,9 @@ if ($stmt->execute()) {
     header("Location: index.php?cadastro=sucesso");
     exit();
 } else {
-    echo "Erro ao cadastrar. Tente novamente.";
+    $_SESSION['erro'] = 'Erro ao cadastrar. Tente novamente.';
+    header('Location: cadastro.php');
+    exit();
 }
 
 $stmt->close();

@@ -1,38 +1,71 @@
 body {
-    background-color: #e3f2fd;
+    background-color: #fdfdfd;
+    padding-bottom: 80px;
 }
 
 /* Carousel */
 .carousel {
     max-width: 100%;
-    max-height: 500px;
+    max-height: 420px;
     overflow: hidden;
 }
 
 .carousel-inner img {
-    height: 500px;
+    height: 420px;
     object-fit: cover;
 }
 
-#home button {
-    background-color: #222;
-    border: none;
-    color: white;
-    padding: 12px 28px;
+#home .btn {
     border-radius: 10px;
     transition: 0.3s ease;
 }
 
-#home button:hover {
-    background-color: #444;
-    transform: scale(1.05);
+#home .btn:hover {
+    transform: translateY(-1px);
+}
+
+.home-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.home-actions .btn {
+    min-width: 180px;
+    max-width: 320px;
+    width: 100%;
 }
 
 footer {
     width: 100%;
     margin-top: 10px;
-    background-color: #222;
+    background-color: #026698;
     color: white;
     text-align: center;
     padding: 20px 0;
+}
+
+/* Additional styles using the new palette */
+h1, h2 {
+    color: #026698;
+}
+
+h3, h4, h5, h6 {
+    color: #03939e;
+}
+
+a {
+    color: #03939e;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #51a1b8;
+}
+
+.section {
+    background-color: #a6cfda;
+    padding: 20px;
+    margin: 20px 0;
 }

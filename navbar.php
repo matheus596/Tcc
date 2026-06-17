@@ -11,11 +11,12 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
             <div class="navbar-nav">
                 <a class="nav-link" href="faca-sua-denuncia.php">Faça sua denúncia</a>
                 <a class="nav-link" href="denuncias.php">Denúncias</a>
-                <a class="nav-link" href="como-funciona.php">Como o site funciona</a>
+                <a class="nav-link" href="como-funciona-o-site.php">Como o site funciona</a>
                 <a class="nav-link" href="sobre-nos.php">Sobre nós</a>
                 <?php if (isset($_SESSION['level']) && $_SESSION['level'] >= 2): ?>
                     <a class="nav-link" href="verificar-denuncias.php">Analisar Denúncias</a>
                 <?php endif; ?>
+                <a class="nav-link" href="notificacoes.php">Notificações</a>
                 <a class="nav-link" href="usuario.php">Minha conta</a>
                 <a class="nav-link" href="logout.php">Sair</a>
             </div>
@@ -35,7 +36,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
             <div class="navbar-nav">
                 <a class="nav-link" href="faca-sua-denuncia.php">Faça sua denúncia</a>
                 <a class="nav-link" href="denuncias.php">Denúncias</a>
-                <a class="nav-link" href="como-funciona.php">Como o site funciona</a>
+                <a class="nav-link" href="como-funciona-o-site.php">Como o site funciona</a>
                 <a class="nav-link" href="sobre-nos.php">Sobre nós</a>
                 <a class="nav-link" href="login.php">Login</a>
                 <a class="nav-link" href="cadastro.php">Cadastro</a>

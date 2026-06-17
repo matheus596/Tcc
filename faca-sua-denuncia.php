@@ -9,7 +9,7 @@ require 'proteger.php';
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="/favicon/android-chrome-512x512.png">
+    <link rel="icon" type="image/png" href="favicon/android-chrome-512x512.png">
     <title>Faça Sua Denúncia</title>
 </head>
 <body>
@@ -18,7 +18,7 @@ require 'proteger.php';
     <div class="container mt-4">
         <form action="enviar-denuncia.php" method="post" enctype="multipart/form-data" class="mx-auto" style="max-width:820px;">
             <h1 class="h3 mb-3 text-center">Faça sua denúncia</h1>
-            <p class="text-center text-muted">Preencha os campos abaixo com o máximo de detalhes possível. Você pode optar por enviar anonimamente.</p>
+            <p class="text-center text-muted">Preencha os campos abaixo com o máximo de detalhes possível. Você pode optar por enviar anonimamente. Não coloque nomes caso permita que o responsável pela escola entre em contato para saber mais detalhes. A denúncia só aparecerá depois de uma análise prévia.</p>
 
             <div class="row g-3">
 
@@ -67,7 +67,11 @@ require 'proteger.php';
                         <option value="" disabled selected>Escolha...</option>
                         <option value="verbal">Verbal</option>
                         <option value="fisico">Físico</option>
-                        <option value="exclusao">Exclusão social</option>
+                        <option value="social">Social/isolamento</option>
+                        <option value="digital">Digital</option>
+                        <option value="psicologico">Psicológico</option>
+                        <option value="humilhacao">Humilhação pública</option>
+                        <option value="racismo">Racismo/xenofobia</option>
                     </select>
                 </div>
 
@@ -112,10 +116,10 @@ require 'proteger.php';
                     <input class="form-control" type="file" id="anexo" name="anexo" accept="image/*,application/pdf">
                 </div>
 
-                <div class="col-md-6 d-flex align-items-center">
+                <div class="col-12">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="anonimo" name="anonimo" value="1">
-                        <label class="form-check-label" for="anonimo">Enviar anonimamente</label>
+                        <input class="form-check-input" type="checkbox" id="permitir_contato" name="permitir_contato" value="1">
+                        <label class="form-check-label" for="permitir_contato">Permito que a escola entre em contato comigo por e-mail para mais informações.</label>
                     </div>
                 </div>
 
@@ -128,7 +132,7 @@ require 'proteger.php';
     </div>
 
     <footer class="mt-4 text-center">
-        <p>© 2026 Denuncias Bullying</p>
+        <p>© 2026 Denúncias Bullying</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
